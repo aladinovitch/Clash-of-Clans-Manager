@@ -24,38 +24,16 @@ namespace Clash_of_Clans_Manager
         public string TextResponse { get; set; }
         public MainWindow()
         {
-            init();
-            //var task = new Task(async () => await requester.RunAsync());
-            
-            //task.RunSynchronously();
-
-            //requester.RunAsync().RunSynchronously();
-            //requester.Response = TextResponse;
-            //TextResponse = requester.Response;
-            //TextResponse = requester.RunAsync().GetAwaiter().GetResult();
-            //TextResponse = requester.Response;
-            Console.WriteLine("MAIN WINDOW : ");
+            _ = Init();
         }
 
-        private async Task init()
+        private async Task Init()
         {
             var requester = new Requester();
-            await requester.RunAsync();
+            await requester.RunAsync().ConfigureAwait(true);
             TextResponse = requester.Response;
             InitializeComponent();
             DataContext = this;
-            Console.WriteLine("TEXT RESPONSE : " + TextResponse);
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 }

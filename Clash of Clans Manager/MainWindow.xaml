@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
             <Paragraph>
                 <TextBlock Text="{Binding TextResponse}" TextWrapping="WrapWithOverflow"/>
             </Paragraph>

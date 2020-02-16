@@ -1,0 +1,17 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clash_of_Clans_Manager"
+        xmlns:Classes="clr-namespace:Clash_of_Clans_Manager.Classes" x:Class="Clash_of_Clans_Manager.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
+        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <Paragraph>
+                <TextBlock Text="{Binding TextResponse}" TextWrapping="WrapWithOverflow"/>
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Window>

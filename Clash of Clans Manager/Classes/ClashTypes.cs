@@ -14,7 +14,8 @@ namespace Clash_of_Clans_Manager.Classes
         public string Type { get; set; }
         public string Description { get; set; }
         public Location Location { get; set; }
-        public IconUrls BadgeUrls { get; set; }
+        public BadgeUrls BadgeUrls { get; set; }
+        public IEnumerable<Member> MemberList { get; set; }
 
         public override string ToString()
         {
@@ -25,6 +26,7 @@ $@"{nameof(Tag)} : {Tag}
 {nameof(Description)} : {Description}
 {nameof(Location)} : {Location}
 {nameof(BadgeUrls)} : {BadgeUrls}
+{nameof(MemberList)} : {string.Join("", MemberList.ToList())}
 ";
         }
     }
@@ -36,8 +38,6 @@ $@"{nameof(Tag)} : {Tag}
         public string Name { get; set; }
         public bool IsCountry { get; set; }
         public string CountryCode { get; set; }
-        [JsonProperty("memberList")]
-        public IEnumerable<Member> MemberList { get; set; }
 
         public override string ToString()
         {
@@ -47,13 +47,11 @@ $@"{nameof(LocalizedName)} : {LocalizedName}
 {nameof(Name)} : {Name}
 {nameof(IsCountry)} : {IsCountry}
 {nameof(CountryCode)} : {CountryCode}
-{nameof(MemberList)} : {MemberList}
-
 ";
         }
     }
 
-    public class IconUrls
+    public class BadgeUrls
     {
         public Uri Small { get; set; }
         public Uri Medium { get; set; }
@@ -65,6 +63,22 @@ $@"{nameof(LocalizedName)} : {LocalizedName}
 $@"{nameof(Small)} : {Small}
 {nameof(Medium)} : {Medium}
 {nameof(Large)} : {Large}
+";
+        }
+    }
+
+    public class IconUrls
+    {
+        public Uri Tiny { get; set; }
+        public Uri Small { get; set; }
+        public Uri Medium { get; set; }
+
+        public override string ToString()
+        {
+            return
+$@"{nameof(Tiny)} : {Tiny}
+{nameof(Small)} : {Small}
+{nameof(Medium)} : {Medium}
 ";
         }
     }

@@ -1,42 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
-// AM : #GL9PC029
-// HTML : %23GL9PC029
+// AM: #GL9PC029 ; HTML: %23GL9PC029
+//Sworn PvP: #2209GQ82J ; HTML: %232209GQ82J
 
 namespace Clash_of_Clans_Manager.Classes
 {
     class ClashOfClansServer
     {
+        public string Key { get; set; } =
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg1MzEyZWEwLTk1YjUtNDIyMC1iOGJjLTAyNzhiMTYzZTRhNSIsImlhdCI6MTU4MTk3MDg2Niwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNS4xOTMuNTEiXSwidHlwZSI6ImNsaWVudCJ9XX0.QOTuOSZNnN9fGosKnrtJl7vQ_wmJ9RaiUPlRkK67jp7vb4JPvnfkPzdJyKf-raeGpNYJ7GuK-nMNUQw2ZfbZzw"
+            ;
         public const string BaseUrl = "https://api.clashofclans.com/v1/";
-        public string Key { get; set; }
-        public string EndPoint { get; set; }
-        public ClashOfClansServer(string Key) => this.Key = Key;
-    }
-
-    class Requester
-    {
         static readonly HttpClient client = new HttpClient();
-        public string Response { get; set; }
-
-        static async Task<Clan> GetClanAsync(Uri path)
+        public string EndPoint { get; set; }
+        public ClashOfClansServer()
         {
-            Clan clan = null;
+            client.BaseAddress = new Uri(BaseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Key);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        public static async Task<T> GetAsync<T>(Uri path)
+        {
+            T result = default;
             HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
-            //HttpResponseMessage response = await client.GetAsync(new Uri(path, UriKind.Relative)).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
-                clan = await response.Content.ReadAsAsync<Clan>().ConfigureAwait(false);
+                result = await response.Content.ReadAsAsync<T>().ConfigureAwait(false);
             }
-            return clan;
+            return result;
         }
-        
-        static async Task<string> GetStringAsync(Uri path)
+
+        public static async Task<string> GetAsStringAsync(Uri path)
         {
             var result = string.Empty;
             HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
@@ -48,37 +47,32 @@ namespace Clash_of_Clans_Manager.Classes
             return result;
         }
 
+        public Uri UriEndPoint()
+        {
+            return new Uri(EndPoint, UriKind.Relative);
+        }
+    }
+
+    //Connectors
+    class Requester
+    {
+        //1. Clan
+        //2. CurrentWar
+        //3.Members
+        //warLog
+        //LeagueGroup
+
+        private readonly ClashOfClansServer server = new ClashOfClansServer();
+        public string Response { get; set; }
+
         public async Task RunAsync()
         {
-            var server = new ClashOfClansServer("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjcyOTcxYjVmLTNhZDAtNDUwYS1hMDA1LWVmNTAwYWQzYzI2MiIsImlhdCI6MTU4MTg5MDQ3Mywic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNC4xMTIuMjA2Il0sInR5cGUiOiJjbGllbnQifV19.wexUlJ9x9VikBosDOSRuZBSEwibKkg44BCCx8hNkXRUtUqzhXLM2KZ-QtlQX5UD_o7vQ47JYcDWBPOMPesUfhQ");
-            //client.BaseAddress = new Uri(ClashOfClansServer.BaseUrl);
-            client.BaseAddress = new Uri(ClashOfClansServer.BaseUrl);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json")
-                );
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", server.Key);
-            //var clan = await GetClanAsync(ClashOfClansServer.BaseUrl + "clans/%23GL9PC029");
-            //var str = await GetStringAsync("clans/%23GL9PC029");
-            //var str = await GetStringAsync(new Uri(ClashOfClansServer.BaseUrl + "clans/%23GL9PC029"));
-            //var clan = await GetClanAsync("clans/%23GL9PC029");
+            server.EndPoint = "clans/%23GL9PC029";
+            var clan = await ClashOfClansServer.GetAsync<Clan>(server.UriEndPoint()).ConfigureAwait(false);
+            Response = clan.ToString();
 
-            try
-            {
-
-                //Response = await GetStringAsync(new Uri(ClashOfClansServer.BaseUrl + "clans/%23GL9PC029")).ConfigureAwait(false);
-                var clan = await GetClanAsync(new Uri(ClashOfClansServer.BaseUrl + "clans/%23GL9PC029")).ConfigureAwait(false);
-                Response = clan.ToString();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
         }
 
-        void FormatResponse()
-        {
-        }
 
     }
 }

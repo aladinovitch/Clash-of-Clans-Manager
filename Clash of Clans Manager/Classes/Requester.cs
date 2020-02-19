@@ -3,15 +3,21 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-// AM: #GL9PC029 ; HTML: %23GL9PC029
-//Sworn PvP: #2209GQ82J ; HTML: %232209GQ82J
-
 namespace Clash_of_Clans_Manager.Classes
 {
+    class ConstantNames
+    {
+        public const string Separator = "/";
+        public const string Clan_AM_Tag = "#GL9PC029";
+        public const string Clan_Sworn_Tag = "#2209GQ82J";
+        public const string ClanEndPoint = "clans";
+        public const string CurrentWarEndPoint = "currentwar";
+        public const string WarLogEndPoint = "warlog";
+    }
     class ClashOfClansServer
     {
         public string Key { get; set; } =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg1MzEyZWEwLTk1YjUtNDIyMC1iOGJjLTAyNzhiMTYzZTRhNSIsImlhdCI6MTU4MTk3MDg2Niwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNS4xOTMuNTEiXSwidHlwZSI6ImNsaWVudCJ9XX0.QOTuOSZNnN9fGosKnrtJl7vQ_wmJ9RaiUPlRkK67jp7vb4JPvnfkPzdJyKf-raeGpNYJ7GuK-nMNUQw2ZfbZzw"
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImE3N2EyYTcyLWU0NjUtNDUzOS1iMWJiLTU2Nzc3ZjIyYzdhNyIsImlhdCI6MTU4MjE0MTAzNSwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNC4xOS42NiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.JZ3Y_Eit997KRCwsm_Ld9sFJfBfGeYwuOXMZbZ5xVV3dF5AdA6COh8my9PWCQSiXDeJeVhKTSXVSDbYV801s9Q"
             ;
         public const string BaseUrl = "https://api.clashofclans.com/v1/";
         static readonly HttpClient client = new HttpClient();
@@ -67,12 +73,51 @@ namespace Clash_of_Clans_Manager.Classes
 
         public async Task RunAsync()
         {
-            server.EndPoint = "clans/%23GL9PC029";
-            var clan = await ClashOfClansServer.GetAsync<Clan>(server.UriEndPoint()).ConfigureAwait(false);
+            ///Clan
+            var clan = await RequestClanAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
             Response = clan.ToString();
 
+            ///Current war
+            var currentWar = await RequestClanWarAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
+            Response = currentWar.ToString();
+
+            //Warlog
+            var clanWarLog = await RequestClanWarLogAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
+            Response = clanWarLog.ToString();
         }
 
+        private async Task<Clan> RequestClanAsync(string clanTag)
+        {
+            server.EndPoint =
+                ConstantNames.ClanEndPoint
+                + ConstantNames.Separator
+                + System.Net.WebUtility.UrlEncode(clanTag);
+            var clan = await ClashOfClansServer.GetAsync<Clan>(server.UriEndPoint()).ConfigureAwait(false);
+            return clan;
+        }
 
+        private async Task<ClanWar> RequestClanWarAsync(string clanTag)
+        {
+            server.EndPoint =
+                ConstantNames.ClanEndPoint
+                + ConstantNames.Separator
+                + System.Net.WebUtility.UrlEncode(clanTag)
+                + ConstantNames.Separator
+                + ConstantNames.CurrentWarEndPoint;
+            var currentWar = await ClashOfClansServer.GetAsync<ClanWar>(server.UriEndPoint()).ConfigureAwait(false);
+            return currentWar;
+        }
+
+        private async Task<ClanWarLog> RequestClanWarLogAsync(string clanTag)
+        {
+            server.EndPoint =
+                ConstantNames.ClanEndPoint
+                + ConstantNames.Separator
+                + System.Net.WebUtility.UrlEncode(clanTag)
+                + ConstantNames.Separator
+                + ConstantNames.WarLogEndPoint;
+            var clanWarLog = await ClashOfClansServer.GetAsync<ClanWarLog>(server.UriEndPoint()).ConfigureAwait(false);
+            return clanWarLog;
+        }
     }
 }

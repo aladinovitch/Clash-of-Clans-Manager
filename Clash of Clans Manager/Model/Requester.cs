@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clash_of_Clans_Manager.Model;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Clash_of_Clans_Manager.Classes
     class ClashOfClansServer
     {
         public string Key { get; set; } =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImE3N2EyYTcyLWU0NjUtNDUzOS1iMWJiLTU2Nzc3ZjIyYzdhNyIsImlhdCI6MTU4MjE0MTAzNSwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNC4xOS42NiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.JZ3Y_Eit997KRCwsm_Ld9sFJfBfGeYwuOXMZbZ5xVV3dF5AdA6COh8my9PWCQSiXDeJeVhKTSXVSDbYV801s9Q"
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjFiYzQyZTg4LWQ0ZjEtNDc2ZS1hOWViLTNhMGViZDNmOTY2ZCIsImlhdCI6MTU4MjI0NTg4MCwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNS4yMDEuMjU0Il0sInR5cGUiOiJjbGllbnQifV19.87G_srfIblOgL3YufIJziSAxAJv_fkFgDRXdmqhyoHscKZsO2AahwDvurIbnL43OqEFn1JYfgFHn1hCnwDDq-g"
             ;
         public const string BaseUrl = "https://api.clashofclans.com/v1/";
         static readonly HttpClient client = new HttpClient();
@@ -69,21 +70,15 @@ namespace Clash_of_Clans_Manager.Classes
         //LeagueGroup
 
         private readonly ClashOfClansServer server = new ClashOfClansServer();
-        public string Response { get; set; }
-
-        public async Task RunAsync()
+        public async Task<ViewModel> RunAsync(ViewModel vm)
         {
             ///Clan
-            var clan = await RequestClanAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
-            Response = clan.ToString();
-
+            vm.Clan = await RequestClanAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
             ///Current war
-            var currentWar = await RequestClanWarAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
-            Response = currentWar.ToString();
-
+            vm.CurrentWar = await RequestClanWarAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
             //Warlog
-            var clanWarLog = await RequestClanWarLogAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
-            Response = clanWarLog.ToString();
+            vm.ClanWarLog = await RequestClanWarLogAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
+            return vm;
         }
 
         private async Task<Clan> RequestClanAsync(string clanTag)

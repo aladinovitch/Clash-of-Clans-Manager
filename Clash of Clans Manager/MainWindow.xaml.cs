@@ -1,4 +1,5 @@
 ﻿using Clash_of_Clans_Manager.Classes;
+using Clash_of_Clans_Manager.Model;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -10,6 +11,7 @@ namespace Clash_of_Clans_Manager
     public partial class MainWindow : Window
     {
         public string TextResponse { get; set; }
+        public ViewModel ViewModel { get; set; }
         public MainWindow()
         {
             _ = Init();
@@ -17,9 +19,10 @@ namespace Clash_of_Clans_Manager
 
         private async Task Init()
         {
+            ViewModel = new ViewModel();
             var requester = new Requester();
-            await requester.RunAsync().ConfigureAwait(true);
-            TextResponse = requester.Response;
+            await requester.RunAsync(ViewModel).ConfigureAwait(true);
+            TextResponse = ViewModel.Clan.ToString();
             InitializeComponent();
             DataContext = this;
         }

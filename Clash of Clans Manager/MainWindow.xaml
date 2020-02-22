@@ -3,15 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Clash_of_Clans_Manager"
-        xmlns:Classes="clr-namespace:Clash_of_Clans_Manager.Classes" x:Class="Clash_of_Clans_Manager.MainWindow"
+        xmlns:local="clr-namespace:ClashOfClansManager"
+        xmlns:Classes="clr-namespace:ClashOfClansManager.Classes"
+        xmlns:Views="clr-namespace:Clash_of_Clans_Manager.Views"
+        x:Class="ClashOfClansManager.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
+    <TabControl HorizontalAlignment="Left" Height="100" Margin="360,152,0,0" VerticalAlignment="Top" Width="100">
+        <TabItem Header="TabItem">
+            <Views:ViewClan/>
+        </TabItem>
+        <TabItem Header="TabItem">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+    </TabControl>
+    <!--<FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
         <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
             <Paragraph>
                 <TextBlock Text="{Binding TextResponse}" TextWrapping="WrapWithOverflow"/>
             </Paragraph>
         </FlowDocument>
-    </FlowDocumentScrollViewer>
+    </FlowDocumentScrollViewer>-->
 </Window>

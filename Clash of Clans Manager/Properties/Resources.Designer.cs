@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Clash_of_Clans_Manager.Properties
+namespace ClashOfClansManager.Properties
 {
 
 

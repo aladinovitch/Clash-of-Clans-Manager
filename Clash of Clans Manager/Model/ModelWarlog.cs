@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clash_of_Clans_Manager.Classes
+namespace ClashOfClansManager.Classes
 {
     public class ClanWar
     {

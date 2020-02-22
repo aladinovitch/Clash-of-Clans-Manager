@@ -1,9 +1,9 @@
-﻿using Clash_of_Clans_Manager.Classes;
-using Clash_of_Clans_Manager.Model;
+﻿using ClashOfClansManager.Classes;
+using ClashOfClansManager.Model;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Clash_of_Clans_Manager
+namespace ClashOfClansManager
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

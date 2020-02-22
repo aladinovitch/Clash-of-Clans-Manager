@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Clash_of_Clans_Manager.Views
 {
     /// <summary>
-    /// Interaction logic for Clan.xaml
+    /// Interaction logic for ViewClan.xaml
     /// </summary>
-    public partial class Clan : Window
+    public partial class ViewClan : UserControl
     {
-        public Clan()
+        public ViewClan()
         {
             InitializeComponent();
         }

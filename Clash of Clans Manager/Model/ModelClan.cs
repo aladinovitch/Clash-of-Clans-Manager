@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Clash_of_Clans_Manager.Classes
+namespace ClashOfClansManager.Classes
 {
     public class Clan
     {

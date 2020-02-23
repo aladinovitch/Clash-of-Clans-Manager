@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClashOfClansManager"
         xmlns:Classes="clr-namespace:ClashOfClansManager.Classes"
-        xmlns:Views="clr-namespace:Clash_of_Clans_Manager.Views"
+        xmlns:Views="clr-namespace:ClashOfClansManager.Views"
         x:Class="ClashOfClansManager.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <TabControl HorizontalAlignment="Left" Height="100" Margin="360,152,0,0" VerticalAlignment="Top" Width="100">
+    <TabControl HorizontalAlignment="Left" Height="448"  Width="628" VerticalAlignment="Top">
         <TabItem Header="TabItem">
-            <Views:ViewClan/>
+            <Views:ViewClan />
         </TabItem>
         <TabItem Header="TabItem">
             <Grid Background="#FFE5E5E5"/>

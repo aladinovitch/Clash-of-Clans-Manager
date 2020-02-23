@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClashOfClansManager.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Clash_of_Clans_Manager.Views
+namespace ClashOfClansManager.Views
 {
     /// <summary>
     /// Interaction logic for ViewClan.xaml
@@ -23,6 +24,8 @@ namespace Clash_of_Clans_Manager.Views
         public ViewClan()
         {
             InitializeComponent();
+            //DataContext = this;
         }
+        public ViewModel ViewModel { get; set; }
     }
 }

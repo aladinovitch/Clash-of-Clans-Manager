@@ -1,13 +1,16 @@
-﻿<UserControl x:Class="Clash_of_Clans_Manager.Views.ViewClan"
+﻿<UserControl x:Class="ClashOfClansManager.Views.ViewClan"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Clash_of_Clans_Manager.Views"
+             xmlns:local="clr-namespace:ClashOfClansManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Label Content="View Clan" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
+        <!--<Label Content="{Binding ViewModel.PlainText}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,26,0,0" Height="349" Width="307"/>-->
+        <Label Content="{Binding ViewModel.Clan}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,26,0,0" Height="173" Width="361"/>
+        <Label Content="{Binding ViewModel.ClanWarLog}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,204,0,0" Height="215" Width="361"/>
+        <Label Content="{Binding ViewModel.CurrentWar}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="366,26,0,0" Height="173" Width="361"/>
     </Grid>
 </UserControl>

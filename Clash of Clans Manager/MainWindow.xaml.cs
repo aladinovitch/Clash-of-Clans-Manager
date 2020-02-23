@@ -22,9 +22,9 @@ namespace ClashOfClansManager
             ViewModel = new ViewModel();
             var requester = new Requester();
             await requester.RunAsync(ViewModel).ConfigureAwait(true);
-            TextResponse = ViewModel.Clan.ToString();
             InitializeComponent();
             DataContext = this;
         }
+
     }
 }

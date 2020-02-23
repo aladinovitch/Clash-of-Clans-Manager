@@ -72,6 +72,12 @@
     <Compile Include="Views\ViewClan.xaml.cs">
       <DependentUpon>ViewClan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewClanWarLog.xaml.cs">
+      <DependentUpon>ViewClanWarLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewCurrentWar.xaml.cs">
+      <DependentUpon>ViewCurrentWar.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,6 +94,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ViewClan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewClanWarLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewCurrentWar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

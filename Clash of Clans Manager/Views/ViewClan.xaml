@@ -7,10 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="View Clan" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <!--<Label Content="{Binding ViewModel.PlainText}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,26,0,0" Height="349" Width="307"/>-->
-        <Label Content="{Binding ViewModel.Clan}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,26,0,0" Height="173" Width="361"/>
-        <Label Content="{Binding ViewModel.ClanWarLog}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,204,0,0" Height="215" Width="361"/>
-        <Label Content="{Binding ViewModel.CurrentWar}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="366,26,0,0" Height="173" Width="361"/>
+        <FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
+            <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
+                <Paragraph Background="LightBlue">
+                    <StackPanel>
+                        <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat='Name : {0}'}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Tag, StringFormat='Tag : {0}'}"/>
+                        <ListBox ItemsSource="{Binding ViewModel.Clan.MemberList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <Label Content=""/>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock Text="{Binding ViewModel.Clan}" TextWrapping="WrapWithOverflow"/>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
     </Grid>
 </UserControl>

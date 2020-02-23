@@ -1,5 +1,4 @@
-﻿using ClashOfClansManager.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace ClashOfClansManager.Views
 {
     /// <summary>
-    /// Interaction logic for ViewClan.xaml
+    /// Interaction logic for ViewClanWarLog.xaml
     /// </summary>
-    public partial class ViewClan : UserControl
+    public partial class ViewClanWarLog : UserControl
     {
-        public ViewClan()
+        public ViewClanWarLog()
         {
             InitializeComponent();
-            //DataContext = this;
         }
     }
 }

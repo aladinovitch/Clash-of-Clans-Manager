@@ -9,12 +9,15 @@
         x:Class="ClashOfClansManager.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <TabControl HorizontalAlignment="Left" Height="448"  Width="628" VerticalAlignment="Top">
-        <TabItem Header="TabItem">
+    <TabControl HorizontalAlignment="Left" VerticalAlignment="Top">
+        <TabItem Header="Clan">
             <Views:ViewClan />
         </TabItem>
-        <TabItem Header="TabItem">
-            <Grid Background="#FFE5E5E5"/>
+        <TabItem Header="Warlog">
+            <Views:ViewClanWarLog/>
+        </TabItem>
+        <TabItem Header="Current War">
+            <Views:ViewCurrentWar/>
         </TabItem>
     </TabControl>
     <!--<FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">

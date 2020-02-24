@@ -18,7 +18,11 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding}"/>
+                                        <!--<TextBlock Text="{Binding}"/>-->
+                                        <Image Source="{Binding League.IconUrls.Small}" Width="50"/>
+                                        <TextBlock Text="{Binding Name, StringFormat=' {0} :'}"/>
+                                        <TextBlock Text="{Binding Donations, StringFormat=' {0} /'}"/>
+                                        <TextBlock Text="{Binding DonationsRecieved, StringFormat=' {0}'}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -27,7 +31,7 @@
                     <Label Content=""/>
                 </Paragraph>
                 <Paragraph>
-                    <TextBlock Text="{Binding ViewModel.Clan}" TextWrapping="WrapWithOverflow"/>
+                    <!--<TextBlock Text="{Binding ViewModel.Clan}" TextWrapping="WrapWithOverflow"/>-->
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>

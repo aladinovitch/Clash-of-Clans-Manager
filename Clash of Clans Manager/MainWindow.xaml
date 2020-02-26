@@ -16,7 +16,7 @@
         <TabItem Header="Warlog">
             <Views:ViewClanWarLog/>
         </TabItem>
-        <TabItem Header="Current War">
+        <TabItem Header="Current War" IsSelected="True">
             <Views:ViewCurrentWar/>
         </TabItem>
     </TabControl>

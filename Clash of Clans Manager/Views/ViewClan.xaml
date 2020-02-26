@@ -7,15 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
+        <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
             <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
-                <Paragraph>
+                <Paragraph TextAlignment="Center">
                     <InlineUIContainer>
                         <StackPanel>
                             <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
                             <!--<TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>-->
                             <TextBlock Text="{Binding ViewModel.Clan.Name}"/>
+                            <TextBlock Text="{Binding ViewModel.Clan.Type}"/>
                             <TextBlock Text="{Binding ViewModel.Clan.Tag}"/>
+                            <TextBlock Text="{Binding ViewModel.Clan.Description}"/>
                         </StackPanel>
                     </InlineUIContainer>
                 </Paragraph>
@@ -33,10 +35,12 @@
                                     </GridViewColumn>
                                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Donate" DisplayMemberBinding="{Binding Donations}"/>
-                                    <GridViewColumn Header="Request" DisplayMemberBinding="{Binding DonationsRecieved}"/>
+                                    <GridViewColumn Header="Req" DisplayMemberBinding="{Binding DonationsRecieved}"/>
                                     <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}"/>
-                                    <GridViewColumn Header="Trophy" DisplayMemberBinding="{Binding Trophies}"/>
                                     <GridViewColumn Header="League" DisplayMemberBinding="{Binding League.Name}"/>
+                                    <GridViewColumn Header="Trophy" DisplayMemberBinding="{Binding Trophies}"/>
+                                    <GridViewColumn Header="VTrophy" DisplayMemberBinding="{Binding VersusTrophies}"/>
+                                    <GridViewColumn Header="XP" DisplayMemberBinding="{Binding ExpLevel}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

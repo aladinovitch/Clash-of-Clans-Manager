@@ -7,7 +7,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="{Binding ViewModel.CurrentWar}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
+        <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
+            <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
+                <Paragraph TextAlignment="Center">
+                    <InlineUIContainer>
+                        <StackPanel>
+                            <!--<Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>-->
+                            <!--<TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>-->
+                            <!--<TextBlock Text="{Binding ViewModel.ClanWarLog}"/>-->
+                            <!--<TextBlock Text="{Binding ViewModel.ClanWarLog.Items}"/>-->
+                            <!--<TextBlock Text="{Binding ViewModel.ClanWarLog.TeamSize}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.StartTime}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.EndTime}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.PreparationStartTime}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.State}"/>-->
+                        </StackPanel>
+                    </InlineUIContainer>
+                </Paragraph>
+                <Paragraph>
+                    <Grid>
+                        <ListView ItemsSource="{Binding ViewModel.ClanWarLog.Items}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Size" DisplayMemberBinding="{Binding TeamSize}" Width="Auto"/>
+                                    <!--<GridViewColumn Header="End" DisplayMemberBinding="{Binding EndTime, StringFormat=dd/MM/yyyy}"/>-->
+                                    <GridViewColumn Header="End" DisplayMemberBinding="{Binding EndTime}"/>
+                                    <GridViewColumn Header="Result" DisplayMemberBinding="{Binding Result}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Paragraph>
+                <!--<Paragraph>
+                    <InlineUIContainer>
+                        <TextBlock Text="{Binding ViewModel.ClanWarLog}" TextWrapping="WrapWithOverflow"/>
+                    </InlineUIContainer>
+                </Paragraph>-->
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
     </Grid>
 </UserControl>

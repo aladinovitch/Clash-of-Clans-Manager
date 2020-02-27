@@ -9,43 +9,94 @@
     <Grid>
         <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
             <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
-                <!--<Paragraph TextAlignment="Center">
+                <Paragraph TextAlignment="Center">
                     <InlineUIContainer>
                         <StackPanel>
-                            <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
-                            --><!--<TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>--><!--
-                            <TextBlock Text="{Binding ViewModel.Clan.Name}"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Type}"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Tag}"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Description}"/>
+                            <TextBlock Text="{Binding ViewModel.CurrentWar.TeamSize}"/>
+                            <TextBlock Text="{Binding ViewModel.CurrentWar.State}"/>
+                            <TextBlock Text="{Binding ViewModel.CurrentWar.PreparationStartTime}"/>
+                            <TextBlock Text="{Binding ViewModel.CurrentWar.StartTime}"/>
+                            <TextBlock Text="{Binding ViewModel.CurrentWar.EndTime}"/>
+                            <Image Source="{Binding ViewModel.CurrentWar.BadgeUrls.Medium}" Width="100"/>
                         </StackPanel>
                     </InlineUIContainer>
                 </Paragraph>
                 <Paragraph>
                     <Grid>
-                        <ListView ItemsSource="{Binding ViewModel.Clan.MemberList}">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Icon">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding League.IconUrls.Small}" Width="50"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Donate" DisplayMemberBinding="{Binding Donations}"/>
-                                    <GridViewColumn Header="Req" DisplayMemberBinding="{Binding DonationsRecieved}"/>
-                                    <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}"/>
-                                    <GridViewColumn Header="League" DisplayMemberBinding="{Binding League.Name}"/>
-                                    <GridViewColumn Header="Trophy" DisplayMemberBinding="{Binding Trophies}"/>
-                                    <GridViewColumn Header="VTrophy" DisplayMemberBinding="{Binding VersusTrophies}"/>
-                                    <GridViewColumn Header="XP" DisplayMemberBinding="{Binding ExpLevel}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" DataContext="{Binding ViewModel.CurrentWar.Clan}">
+                            <Image Source="{Binding BadgeUrls.Medium}" Width="100"/>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
+                            <TextBlock Text="{Binding Tag}"/>
+                            <TextBlock Text="{Binding Attacks, StringFormat=Attacks: {0}}"/>
+                            <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
+                            <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
+                            <ListView ItemsSource="{Binding Members}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Position" DisplayMemberBinding="{Binding MapPosition}"/>
+                                        <GridViewColumn Header="TH" DisplayMemberBinding="{Binding TownhallLevel}"/>
+                                        <GridViewColumn Header="Attacks" DisplayMemberBinding="{Binding OpponentAttacks}"/>
+                                        <GridViewColumn Header="Best Attack">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding BestOpponentAttack.Order, StringFormat=Order: {0}}"/>
+                                                        <TextBlock Text="{Binding BestOpponentAttack.Stars, StringFormat=Stars: {0}}"/>
+                                                        <TextBlock Text="{Binding BestOpponentAttack.DestructionPercentage, StringFormat=Destruction: {0}}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Attacks">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ListView ItemsSource="{Binding Attacks}">
+                                                        <ListView.View>
+                                                            <GridView>
+                                                                <GridViewColumn Header="Order" DisplayMemberBinding="{Binding Order}"/>
+                                                                <GridViewColumn Header="Stars" DisplayMemberBinding="{Binding Stars}"/>
+                                                                <GridViewColumn Header="Destruction %" DisplayMemberBinding="{Binding DestructionPercentage}"/>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" DataContext="{Binding ViewModel.CurrentWar.Opponent}">
+                            <Image Source="{Binding BadgeUrls.Medium}" Width="100"/>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
+                            <TextBlock Text="{Binding Tag}"/>
+                            <TextBlock Text="{Binding Attacks, StringFormat=Attacks: {0}}"/>
+                            <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
+                            <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
+                            <!--<ListView ItemsSource="{Binding ViewModel.CurrentWar.Clan}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Icon">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image Source="{Binding BadgeUrls.Medium}" Width="100"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>-->
+                        </StackPanel>
                     </Grid>
-                </Paragraph>-->
+                </Paragraph>
                 <Paragraph>
                     <InlineUIContainer>
                         <TextBlock Text="{Binding ViewModel.CurrentWar}" TextWrapping="WrapWithOverflow"/>

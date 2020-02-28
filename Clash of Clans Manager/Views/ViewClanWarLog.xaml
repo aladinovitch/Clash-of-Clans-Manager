@@ -9,33 +9,63 @@
     <Grid>
         <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
             <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
-                <Paragraph TextAlignment="Center">
+                <!--<Paragraph TextAlignment="Center">
                     <InlineUIContainer>
                         <StackPanel>
-                            <!--<Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>-->
-                            <!--<TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>-->
-                            <!--<TextBlock Text="{Binding ViewModel.ClanWarLog}"/>-->
-                            <!--<TextBlock Text="{Binding ViewModel.ClanWarLog.Items}"/>-->
-                            <!--<TextBlock Text="{Binding ViewModel.ClanWarLog.TeamSize}"/>
+                            <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
+                            <TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.Items}"/>
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.TeamSize}"/>
                             <TextBlock Text="{Binding ViewModel.ClanWarLog.StartTime}"/>
                             <TextBlock Text="{Binding ViewModel.ClanWarLog.EndTime}"/>
                             <TextBlock Text="{Binding ViewModel.ClanWarLog.PreparationStartTime}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.State}"/>-->
+                            <TextBlock Text="{Binding ViewModel.ClanWarLog.State}"/>
                         </StackPanel>
                     </InlineUIContainer>
-                </Paragraph>
+                </Paragraph>-->
                 <Paragraph>
                     <Grid>
-                        <ListView ItemsSource="{Binding ViewModel.ClanWarLog.Items}">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Size" DisplayMemberBinding="{Binding TeamSize}" Width="Auto"/>
-                                    <!--<GridViewColumn Header="End" DisplayMemberBinding="{Binding EndTime, StringFormat=dd/MM/yyyy}"/>-->
-                                    <GridViewColumn Header="End" DisplayMemberBinding="{Binding EndTime}"/>
-                                    <GridViewColumn Header="Result" DisplayMemberBinding="{Binding Result}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                        <DataGrid ItemsSource="{Binding ViewModel.ClanWarLog.Items}" AutoGenerateColumns="False" AlternatingRowBackground="PowderBlue" GridLinesVisibility="None" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Size" Binding="{Binding TeamSize}"/>
+                                <DataGridTextColumn Header="Result" Binding="{Binding Result}"/>
+                                <DataGridTemplateColumn Header="Clan">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel DataContext="{Binding Clan}">
+                                                <Image Source="{Binding BadgeUrls.Medium}" Width="70"/>
+                                                <TextBlock Text="{Binding Name}"/>
+                                                <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
+                                                <TextBlock Text="{Binding Tag}"/>
+                                                <TextBlock Text="{Binding DestructionPercentage, StringFormat=Destruction: {0}%}"/>
+                                                <TextBlock Text="{Binding Attacks, StringFormat=Attacks: {0}}"/>
+                                                <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
+                                                <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Opponent">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel DataContext="{Binding Opponent}">
+                                                <Image Source="{Binding BadgeUrls.Medium}" Width="70"/>
+                                                <TextBlock Text="{Binding Name}"/>
+                                                <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
+                                                <TextBlock Text="{Binding Tag}"/>
+                                                <TextBlock Text="{Binding DestructionPercentage, StringFormat=Destruction: {0}%}"/>
+                                                <TextBlock Text="{Binding Attacks, StringFormat=Attacks: {0}}"/>
+                                                <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
+                                                <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="End" Binding="{Binding EndTime}"/>
+                                <!--<DataGridTextColumn Header="End" Binding="{Binding EndTime, StringFormat=dd/MM/yyyy}"/>-->
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </Paragraph>
                 <!--<Paragraph>

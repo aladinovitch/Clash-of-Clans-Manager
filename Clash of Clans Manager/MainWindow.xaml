@@ -10,10 +10,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="Auto" >
     <TabControl HorizontalAlignment="Left" VerticalAlignment="Top">
-        <TabItem Header="Clan" IsSelected="True">
+        <TabItem Header="Clan">
             <Views:ViewClan/>
         </TabItem>
-        <TabItem Header="Warlog">
+        <TabItem Header="Warlog" IsSelected="True">
             <Views:ViewClanWarLog />
         </TabItem>
         <TabItem Header="Current War">

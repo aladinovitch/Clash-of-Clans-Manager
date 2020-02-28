@@ -6,51 +6,48 @@
              xmlns:local="clr-namespace:ClashOfClansManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
-            <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
-                <Paragraph TextAlignment="Center">
+    <FlowDocumentScrollViewer>
+        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
+            <Paragraph>
+                <InlineUIContainer>
+                    <StackPanel>
+                        <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Name}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Type}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Tag}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Description}"/>
+                    </StackPanel>
+                </InlineUIContainer>
+            </Paragraph>
+            <Paragraph>
+                <Grid>
+                    <DataGrid ItemsSource="{Binding ViewModel.Clan.MemberList}" AutoGenerateColumns="False" AlternatingRowBackground="PowderBlue" GridLinesVisibility="None" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Icon">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding League.IconUrls.Small}" Width="50"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Donate" Binding="{Binding Donations}"/>
+                            <DataGridTextColumn Header="Req" Binding="{Binding DonationsRecieved}"/>
+                            <DataGridTextColumn Header="Role" Binding="{Binding Role}"/>
+                            <DataGridTextColumn Header="League" Binding="{Binding League.Name}"/>
+                            <DataGridTextColumn Header="Trophy" Binding="{Binding Trophies}"/>
+                            <DataGridTextColumn Header="VTrophy" Binding="{Binding VersusTrophies}"/>
+                            <DataGridTextColumn Header="XP" Binding="{Binding ExpLevel}"/>
+                            <DataGridTextColumn Header="Rank" Binding="{Binding ClanRank}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Paragraph>
+            <!--<Paragraph>
                     <InlineUIContainer>
-                        <StackPanel>
-                            <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Name}"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Type}"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Tag}"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Description}"/>
-                        </StackPanel>
+                        <TextBlock Text="{Binding ViewModel.Clan}" TextWrapping="WrapWithOverflow"/>
                     </InlineUIContainer>
-                </Paragraph>
-                <Paragraph>
-                    <Grid>
-                        <ListView ItemsSource="{Binding ViewModel.Clan.MemberList}">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Icon">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding League.IconUrls.Small}" Width="50"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Donate" DisplayMemberBinding="{Binding Donations}"/>
-                                    <GridViewColumn Header="Req" DisplayMemberBinding="{Binding DonationsRecieved}"/>
-                                    <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}"/>
-                                    <GridViewColumn Header="League" DisplayMemberBinding="{Binding League.Name}"/>
-                                    <GridViewColumn Header="Trophy" DisplayMemberBinding="{Binding Trophies}"/>
-                                    <GridViewColumn Header="VTrophy" DisplayMemberBinding="{Binding VersusTrophies}"/>
-                                    <GridViewColumn Header="XP" DisplayMemberBinding="{Binding ExpLevel}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
-                </Paragraph>
-                <Paragraph>
-                    <InlineUIContainer>
-                        <!--<TextBlock Text="{Binding ViewModel.Clan}" TextWrapping="WrapWithOverflow"/>-->
-                    </InlineUIContainer>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-    </Grid>
+                </Paragraph>-->
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
 </UserControl>

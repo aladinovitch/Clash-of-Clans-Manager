@@ -13,7 +13,6 @@
                     <InlineUIContainer>
                         <StackPanel>
                             <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
-                            <!--<TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>-->
                             <TextBlock Text="{Binding ViewModel.Clan.Name}"/>
                             <TextBlock Text="{Binding ViewModel.Clan.Type}"/>
                             <TextBlock Text="{Binding ViewModel.Clan.Tag}"/>

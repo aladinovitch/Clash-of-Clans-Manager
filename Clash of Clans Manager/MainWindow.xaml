@@ -8,23 +8,16 @@
         xmlns:Views="clr-namespace:ClashOfClansManager.Views"
         x:Class="ClashOfClansManager.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="Auto" >
     <TabControl HorizontalAlignment="Left" VerticalAlignment="Top">
-        <TabItem Header="Clan">
-            <Views:ViewClan />
+        <TabItem Header="Clan" IsSelected="True">
+            <Views:ViewClan/>
         </TabItem>
         <TabItem Header="Warlog">
-            <Views:ViewClanWarLog/>
+            <Views:ViewClanWarLog />
         </TabItem>
-        <TabItem Header="Current War" IsSelected="True">
+        <TabItem Header="Current War">
             <Views:ViewCurrentWar/>
         </TabItem>
     </TabControl>
-    <!--<FlowDocumentScrollViewer Margin="10" BorderBrush="Black" BorderThickness="1">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
-            <Paragraph>
-                <TextBlock Text="{Binding TextResponse}" TextWrapping="WrapWithOverflow"/>
-            </Paragraph>
-        </FlowDocument>
-    </FlowDocumentScrollViewer>-->
 </Window>

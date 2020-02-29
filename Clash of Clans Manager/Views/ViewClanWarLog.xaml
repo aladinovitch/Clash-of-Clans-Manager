@@ -9,35 +9,38 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <local1:UTCConverter x:Key="UTCConverter"/>
+        <Style TargetType="ListViewItem">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                    <Setter Property="Background" Value="White" />
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                    <Setter Property="Background" Value="PowderBlue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
             <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
-                <!--<Paragraph TextAlignment="Center">
-                    <InlineUIContainer>
-                        <StackPanel>
-                            <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
-                            <TextBlock Text="{Binding ViewModel.Clan.Name, StringFormat=Name : \{0\}}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.Items}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.TeamSize}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.StartTime}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.EndTime}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.PreparationStartTime}"/>
-                            <TextBlock Text="{Binding ViewModel.ClanWarLog.State}"/>
-                        </StackPanel>
-                    </InlineUIContainer>
-                </Paragraph>-->
                 <Paragraph>
-                    <Grid>
-                        <DataGrid ItemsSource="{Binding ViewModel.ClanWarLog.Items}" AutoGenerateColumns="False" AlternatingRowBackground="PowderBlue" GridLinesVisibility="None" IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Size" Binding="{Binding TeamSize}"/>
-                                <DataGridTextColumn Header="Result" Binding="{Binding Result}"/>
-                                <DataGridTemplateColumn Header="Clan">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel DataContext="{Binding Clan}">
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding ViewModel.ClanWarLog.Items}" AlternationCount="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding TeamSize}"/>
+                                        <TextBlock Text="{Binding Result}"/>
+                                        <TextBlock Text="{Binding EndTime, Converter={StaticResource UTCConverter}}"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel DataContext="{Binding Clan}" Grid.Column="0">
                                                 <Image Source="{Binding BadgeUrls.Medium}" Width="70"/>
                                                 <TextBlock Text="{Binding Name}"/>
                                                 <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
@@ -47,13 +50,7 @@
                                                 <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
                                                 <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
                                             </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="Opponent">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel DataContext="{Binding Opponent}">
+                                            <StackPanel DataContext="{Binding Opponent}" Grid.Column="1">
                                                 <Image Source="{Binding BadgeUrls.Medium}" Width="70"/>
                                                 <TextBlock Text="{Binding Name}"/>
                                                 <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
@@ -63,13 +60,12 @@
                                                 <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
                                                 <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
                                             </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="End" Binding="{Binding EndTime, Converter={StaticResource UTCConverter}}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
                 </Paragraph>
                 <!--<Paragraph>
                     <InlineUIContainer>

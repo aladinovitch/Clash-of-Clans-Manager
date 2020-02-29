@@ -41,20 +41,20 @@ $@"{nameof(Clan)} : {Clan}
         public int Stars { get; set; }
         public int ExpEarned { get; set; }
         public IEnumerable<ClanWarMember> Members { get; set; }
-//        public override string ToString()
-//        {
-//            return
-//$@"{nameof(DestructionPercentage)} : {DestructionPercentage}
-//{nameof(Tag)} : {Tag}
-//{nameof(Name)} : {Name}
-//{nameof(BadgeUrls)} : {BadgeUrls}
-//{nameof(ClanLevel)} : {ClanLevel}
-//{nameof(Attacks)} : {Attacks}
-//{nameof(Stars)} : {Stars}
-//{nameof(ExpEarned)} : {ExpEarned}
-//{nameof(Members)} : {string.Join("", Members)}
-//";
-//        }
+        public override string ToString()
+        {
+            return
+$@"{nameof(DestructionPercentage)} : {DestructionPercentage}
+{nameof(Tag)} : {Tag}
+{nameof(Name)} : {Name}
+{nameof(BadgeUrls)} : {BadgeUrls}
+{nameof(ClanLevel)} : {ClanLevel}
+{nameof(Attacks)} : {Attacks}
+{nameof(Stars)} : {Stars}
+{nameof(ExpEarned)} : {ExpEarned}
+{nameof(Members)} : {string.Join("", Members)}
+";
+        }
     }
 
     public class ClanWarMember

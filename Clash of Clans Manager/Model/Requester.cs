@@ -18,7 +18,7 @@ namespace ClashOfClansManager.Classes
     class ClashOfClansServer
     {
         public string Key { get; set; } =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImE2NDViY2VmLTNjZTMtNDQ0Ny1iMWQ4LTM4OGNjODQxODg3YyIsImlhdCI6MTU4Mjg5NTM5MCwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwOS4xNDkuMTY3Il0sInR5cGUiOiJjbGllbnQifV19.D-rW2VfHi1weJedPZpkkEAMwbyQ-UPlr6H4k20bH4NPE6E_ypWZSGjy9inylbuBG_2TKS21Sg1jWJ5tRLh6aAg"
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImFkZDQ0Y2UxLWM3ZDctNDAyNS04Mzg0LTAwZGM2MTA0N2VlZSIsImlhdCI6MTU4Mjk2MzYxMiwic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQxLjEwNC4yMjEuMTA2Il0sInR5cGUiOiJjbGllbnQifV19.6xgc71zwyNnLvrR8QxyrLAqYyVxp7o96r3wIixw2hYDp8UvRB-6rmA9ArRgW8-_TLCGax2UGb1U0Nv2dAhke7g"
             ;
         public const string BaseUrl = "https://api.clashofclans.com/v1/";
         static readonly HttpClient client = new HttpClient();

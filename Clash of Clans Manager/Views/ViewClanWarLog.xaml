@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <local1:UTCConverter x:Key="UTCConverter"/>
+        <local1:UTCConverter x:Key="UTCConverterKey"/>
         <Style TargetType="ListViewItem">
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
@@ -28,40 +28,58 @@
                         <ListView ItemsSource="{Binding ViewModel.ClanWarLog.Items}" AlternationCount="2">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding TeamSize}"/>
-                                        <TextBlock Text="{Binding Result}"/>
-                                        <TextBlock Text="{Binding EndTime, Converter={StaticResource UTCConverter}}"/>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel DataContext="{Binding Clan}" Grid.Column="0">
-                                                <Image Source="{Binding BadgeUrls.Medium}" Width="70"/>
-                                                <TextBlock Text="{Binding Name}"/>
-                                                <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
-                                                <TextBlock Text="{Binding Tag}"/>
-                                                <TextBlock Text="{Binding DestructionPercentage, StringFormat=Destruction: {0}%}"/>
-                                                <TextBlock Text="{Binding Attacks, StringFormat=Attacks: {0}}"/>
-                                                <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
-                                                <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
-                                            </StackPanel>
-                                            <StackPanel DataContext="{Binding Opponent}" Grid.Column="1">
-                                                <Image Source="{Binding BadgeUrls.Medium}" Width="70"/>
-                                                <TextBlock Text="{Binding Name}"/>
-                                                <TextBlock Text="{Binding ClanLevel, StringFormat=Level: {0}}"/>
-                                                <TextBlock Text="{Binding Tag}"/>
-                                                <TextBlock Text="{Binding DestructionPercentage, StringFormat=Destruction: {0}%}"/>
-                                                <TextBlock Text="{Binding Attacks, StringFormat=Attacks: {0}}"/>
-                                                <TextBlock Text="{Binding Stars, StringFormat=Stars: {0}}"/>
-                                                <TextBlock Text="{Binding ExpEarned, StringFormat=XP Earned: {0}}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </StackPanel>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding TeamSize}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Result}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding EndTime, Converter={StaticResource UTCConverterKey}}" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+                                        
+                                        <Image Source="{Binding Clan.BadgeUrls.Medium}" Width="70" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <Image Source="{Binding Opponent.BadgeUrls.Medium}" Width="70" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        
+                                        <TextBlock Text="{Binding Clan.Name}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.Name}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        
+                                        <TextBlock Text="{Binding Clan.Tag}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.Tag}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        
+                                        <TextBlock Text="Level: " Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Clan.ClanLevel}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.ClanLevel}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        
+                                        <TextBlock Text="Destruction: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Clan.DestructionPercentage, StringFormat=+{0}%}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.DestructionPercentage, StringFormat=+{0}%}" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        
+                                        <TextBlock Text="Attacks: " Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Clan.Attacks}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.Attacks}" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center"/>
+
+                                        <TextBlock Text="Stars: " Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Clan.Stars}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.Stars}" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center"/>
+
+                                        <TextBlock Text="XP: " Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Clan.ExpEarned}" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opponent.ExpEarned}" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center"/>
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>

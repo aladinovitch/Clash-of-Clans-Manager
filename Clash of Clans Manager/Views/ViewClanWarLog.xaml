@@ -15,9 +15,18 @@
                     <Setter Property="Background" Value="White" />
                 </Trigger>
                 <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
-                    <Setter Property="Background" Value="PowderBlue" />
+                    <Setter Property="Background" Value="AliceBlue" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontWeight="Light" Foreground="CornflowerBlue"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -45,40 +54,113 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding TeamSize}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Result}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding EndTime, Converter={StaticResource UTCConverterKey}}" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
-                                        
-                                        <Image Source="{Binding Clan.BadgeUrls.Medium}" Width="70" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <Image Source="{Binding Opponent.BadgeUrls.Medium}" Width="70" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center"/>
-                                        
-                                        <TextBlock Text="{Binding Clan.Name}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.Name}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center"/>
-                                        
-                                        <TextBlock Text="{Binding Clan.Tag}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.Tag}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center"/>
-                                        
-                                        <TextBlock Text="Level: " Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"/>
-                                        <TextBlock Text="{Binding Clan.ClanLevel}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.ClanLevel}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center"/>
-                                        
-                                        <TextBlock Text="Destruction: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right"/>
-                                        <TextBlock Text="{Binding Clan.DestructionPercentage, StringFormat=+{0}%}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.DestructionPercentage, StringFormat=+{0}%}" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center"/>
-                                        
-                                        <TextBlock Text="Attacks: " Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right"/>
-                                        <TextBlock Text="{Binding Clan.Attacks}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.Attacks}" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center"/>
 
-                                        <TextBlock Text="Stars: " Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right"/>
-                                        <TextBlock Text="{Binding Clan.Stars}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.Stars}" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        <GroupBox Header="Battle team size" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <TextBlock Text="{Binding TeamSize}" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
 
-                                        <TextBlock Text="XP: " Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right"/>
-                                        <TextBlock Text="{Binding Clan.ExpEarned}" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Opponent.ExpEarned}" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center"/>
+                                        <GroupBox Header="Result" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <TextBlock Text="{Binding Result}" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="End time" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <TextBlock Text="{Binding EndTime, Converter={StaticResource UTCConverterKey}}" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Badges" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Clan.BadgeUrls.Medium}" Width="70" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <Image Source="{Binding Opponent.BadgeUrls.Medium}" Width="70" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Name" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.Name}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.Name}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Tag" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.Tag}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.Tag}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+                                        
+                                        <GroupBox Header="Level" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.ClanLevel}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.ClanLevel}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Destruction" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.DestructionPercentage, StringFormat=+{0}%}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.DestructionPercentage, StringFormat=+{0}%}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Attacks" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.Attacks}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.Attacks}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Stars" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.Stars}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.Stars}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
+
+                                        <GroupBox Header="Experience" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Clan.ExpEarned}" Grid.Column="0" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Opponent.ExpEarned}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </GroupBox>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

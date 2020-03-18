@@ -13,11 +13,14 @@
         <TabItem Header="Clan">
             <Views:ViewClan/>
         </TabItem>
-        <TabItem Header="Warlog" IsSelected="True">
+        <TabItem Header="Warlog">
             <Views:ViewClanWarLog />
         </TabItem>
         <TabItem Header="Current War">
             <Views:ViewCurrentWar/>
+        </TabItem>
+        <TabItem Header="Compact" IsSelected="True">
+            <Views:ViewCompact/>
         </TabItem>
     </TabControl>
 </Window>

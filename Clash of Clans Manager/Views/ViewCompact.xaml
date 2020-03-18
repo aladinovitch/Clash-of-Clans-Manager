@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="ClashOfClansManager.Views.ViewCompact"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClashOfClansManager.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <FlowDocumentScrollViewer>
+        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True" TextAlignment="Left">
+            <Paragraph>
+                <InlineUIContainer>
+                    <StackPanel>
+                        <Image Source="{Binding ViewModel.Clan.BadgeUrls.Medium}" Width="100"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Name}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Type}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Tag}"/>
+                        <TextBlock Text="{Binding ViewModel.Clan.Description}"/>
+                    </StackPanel>
+                </InlineUIContainer>
+            </Paragraph>
+            <Paragraph>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid ItemsSource="{Binding ViewModel.Clan.MemberList}" AutoGenerateColumns="False" AlternatingRowBackground="PowderBlue" GridLinesVisibility="None" IsReadOnly="True" Grid.Column="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <DataGrid ItemsSource="{Binding ViewModel.CurrentWar.Clan.Members}" AutoGenerateColumns="False" AlternatingRowBackground="PowderBlue" GridLinesVisibility="None" IsReadOnly="True" Grid.Column="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Position" Binding="{Binding MapPosition}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</UserControl>

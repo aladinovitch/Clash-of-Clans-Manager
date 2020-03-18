@@ -9,6 +9,25 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <local1:UTCConverter x:Key="UTCConverterKey"/>
+        <Style TargetType="ListViewItem">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                    <Setter Property="Background" Value="White" />
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                    <Setter Property="Background" Value="AliceBlue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontWeight="Light" Foreground="CornflowerBlue"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <FlowDocumentScrollViewer Margin="5" BorderBrush="LightBlue" BorderThickness="3">
@@ -18,7 +37,6 @@
                         <StackPanel DataContext="{Binding ViewModel.CurrentWar}">
                             <TextBlock Text="{Binding TeamSize}"/>
                             <TextBlock Text="{Binding State}"/>
-
                             <TextBlock Text="{Binding PreparationStartTime, Converter={StaticResource UTCConverterKey}}"/>
                             <TextBlock Text="{Binding StartTime, Converter={StaticResource UTCConverterKey}}"/>
                             <TextBlock Text="{Binding EndTime, Converter={StaticResource UTCConverterKey}}"/>

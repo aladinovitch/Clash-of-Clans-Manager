@@ -34,9 +34,9 @@
 
                     <DataGrid ItemsSource="{Binding ViewModel.CurrentWar.Clan.Members}" AutoGenerateColumns="False" AlternatingRowBackground="PowderBlue" GridLinesVisibility="None" IsReadOnly="True" Grid.Column="1">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="Position" Binding="{Binding MapPosition}"/>
+                            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+                            <!--<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>-->
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

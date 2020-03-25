@@ -17,16 +17,13 @@ namespace ClashOfClansManager
         public ViewModel ViewModel { get; set; }
         public MainWindow()
         {
-            ViewModel = new ViewModel
-            {
-                Token = Token
-            };
+            ViewModel = new ViewModel();
             //_ = Init();
         }
 
         private async Task Init()
         {
-            var requester = new Requester();
+            var requester = new Requester(Token);
             await requester.RunAsync(ViewModel).ConfigureAwait(true);
             InitializeComponent();
             DataContext = this;
@@ -34,6 +31,7 @@ namespace ClashOfClansManager
 
         private void SendToken_Click(object sender, RoutedEventArgs e)
         {
+            Token = TextBoxToken.Text;
             _ = Init();
         }
     }

@@ -9,7 +9,6 @@ namespace ClashOfClansManager.Model
 {
     public class ViewModel
     {
-        public string Token { get; set; }
         public Clan Clan { get; set; }
         public ClanWar CurrentWar { get; set; }
         public ClanWarLog ClanWarLog { get; set; }

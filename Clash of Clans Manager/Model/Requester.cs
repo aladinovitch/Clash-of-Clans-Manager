@@ -17,14 +17,14 @@ namespace ClashOfClansManager.Classes
     }
     class ClashOfClansServer
     {
-        public string Key { get; set; } =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdiNzE0ZmYxLWQwYjQtNGJkYy1iMWJiLTY3NGFhNGE3YjllNCIsImlhdCI6MTU4NTEyMzk0Mywic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjE5Ny4yMDYuMTg3LjE1NCJdLCJ0eXBlIjoiY2xpZW50In1dfQ.7aUFN8CvA_RNWRN3RDu-Eq3w8P1XUTL5ryLp6aKKu3qmf_VhzaVY0bq5mbtzt10gqZ63jpyPsqNhb0Kn1BZf5w"
-            ;
+        //public string Key { get; set; } = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdiNzE0ZmYxLWQwYjQtNGJkYy1iMWJiLTY3NGFhNGE3YjllNCIsImlhdCI6MTU4NTEyMzk0Mywic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjE5Ny4yMDYuMTg3LjE1NCJdLCJ0eXBlIjoiY2xpZW50In1dfQ.7aUFN8CvA_RNWRN3RDu-Eq3w8P1XUTL5ryLp6aKKu3qmf_VhzaVY0bq5mbtzt10gqZ63jpyPsqNhb0Kn1BZf5w";
+        public string Key { get; set; }
         public const string BaseUrl = "https://api.clashofclans.com/v1/";
         static readonly HttpClient client = new HttpClient();
         public string EndPoint { get; set; }
-        public ClashOfClansServer()
+        public ClashOfClansServer(string key)
         {
+            Key = key;
             client.BaseAddress = new Uri(BaseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Key);
@@ -69,7 +69,14 @@ namespace ClashOfClansManager.Classes
         //warLog
         //LeagueGroup
 
-        private readonly ClashOfClansServer server = new ClashOfClansServer();
+        //private readonly ClashOfClansServer server = new ClashOfClansServer();
+        private ClashOfClansServer server;
+
+        public Requester(string token)
+        {
+            server = new ClashOfClansServer(token);
+        }
+
         public async Task<ViewModel> RunAsync(ViewModel vm)
         {
             ///Clan

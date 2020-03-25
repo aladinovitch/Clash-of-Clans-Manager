@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label Content="Token :" Grid.Column="0"/>
-            <TextBox Text="{Binding Token}" Background="AliceBlue" Grid.Column="1"/>
+            <TextBox Text="" x:Name="TextBoxToken" Background="AliceBlue" Grid.Column="1"/>
             <Button x:Name="SendToken" Content="Send" Grid.Column="2" Click="SendToken_Click"/>
         </Grid>
         <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">

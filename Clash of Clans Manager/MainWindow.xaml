@@ -8,19 +8,35 @@
         xmlns:Views="clr-namespace:ClashOfClansManager.Views"
         x:Class="ClashOfClansManager.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" >
-    <TabControl HorizontalAlignment="Left" VerticalAlignment="Top">
-        <TabItem Header="Clan">
-            <Views:ViewClan/>
-        </TabItem>
-        <TabItem Header="Warlog">
-            <Views:ViewClanWarLog />
-        </TabItem>
-        <TabItem Header="Current War">
-            <Views:ViewCurrentWar/>
-        </TabItem>
-        <TabItem Header="Compact" IsSelected="True">
-            <Views:ViewCompact/>
-        </TabItem>
-    </TabControl>
+        Title="MainWindow" Height="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Token :" Grid.Column="0"/>
+            <TextBox Text="{Binding Token}" Background="AliceBlue" Grid.Column="1"/>
+            <Button x:Name="SendToken" Content="Send" Grid.Column="2" Click="SendToken_Click"/>
+        </Grid>
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
+            <TabItem Header="Clan">
+                <Views:ViewClan/>
+            </TabItem>
+            <TabItem Header="Warlog">
+                <Views:ViewClanWarLog />
+            </TabItem>
+            <TabItem Header="Current War">
+                <Views:ViewCurrentWar/>
+            </TabItem>
+            <TabItem Header="Compact" IsSelected="True">
+                <Views:ViewCompact/>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>

@@ -15,14 +15,20 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Token :" Grid.Column="0"/>
-            <TextBox Text="" x:Name="TextBoxToken" Background="AliceBlue" Grid.Column="1"/>
-            <Button x:Name="SendToken" Content="Send" Grid.Column="2" Click="SendToken_Click"/>
+            <Label Content="Token :" Grid.Row="0" Grid.Column="0"/>
+            <TextBox x:Name="TextBoxToken" Background="AliceBlue" Grid.Row="0" Grid.Column="1"/>
+            <Label Content="Clan Tag :" Grid.Row="1" Grid.Column="0"/>
+            <TextBox x:Name="TextBoxClanTag" Text="#2209GQ82J" Background="AliceBlue" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="SendToken" Content="Send" Click="SendToken_Click" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
         </Grid>
         <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
             <TabItem Header="Clan">

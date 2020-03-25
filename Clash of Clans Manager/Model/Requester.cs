@@ -9,15 +9,12 @@ namespace ClashOfClansManager.Classes
     class ConstantNames
     {
         public const string Separator = "/";
-        public const string Clan_AM_Tag = "#GL9PC029";
-        public const string Clan_Sworn_Tag = "#2209GQ82J";
         public const string ClanEndPoint = "clans";
         public const string CurrentWarEndPoint = "currentwar";
         public const string WarLogEndPoint = "warlog";
     }
     class ClashOfClansServer
     {
-        //public string Key { get; set; } = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdiNzE0ZmYxLWQwYjQtNGJkYy1iMWJiLTY3NGFhNGE3YjllNCIsImlhdCI6MTU4NTEyMzk0Mywic3ViIjoiZGV2ZWxvcGVyLzBkMTdjMmQ2LWUwMzMtNGNlOS00NTk0LWE2ZWI1YzlkY2M5OCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjE5Ny4yMDYuMTg3LjE1NCJdLCJ0eXBlIjoiY2xpZW50In1dfQ.7aUFN8CvA_RNWRN3RDu-Eq3w8P1XUTL5ryLp6aKKu3qmf_VhzaVY0bq5mbtzt10gqZ63jpyPsqNhb0Kn1BZf5w";
         public string Key { get; set; }
         public const string BaseUrl = "https://api.clashofclans.com/v1/";
         static readonly HttpClient client = new HttpClient();
@@ -69,9 +66,8 @@ namespace ClashOfClansManager.Classes
         //warLog
         //LeagueGroup
 
-        //private readonly ClashOfClansServer server = new ClashOfClansServer();
-        private ClashOfClansServer server;
-
+        public string ClanTag { get; set; }
+        private readonly ClashOfClansServer server;
         public Requester(string token)
         {
             server = new ClashOfClansServer(token);
@@ -80,11 +76,11 @@ namespace ClashOfClansManager.Classes
         public async Task<ViewModel> RunAsync(ViewModel vm)
         {
             ///Clan
-            vm.Clan = await RequestClanAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
+            vm.Clan = await RequestClanAsync(ClanTag).ConfigureAwait(false);
             ///Current war
-            vm.CurrentWar = await RequestClanWarAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
+            vm.CurrentWar = await RequestClanWarAsync(ClanTag).ConfigureAwait(false);
             //Warlog
-            vm.ClanWarLog = await RequestClanWarLogAsync(ConstantNames.Clan_Sworn_Tag).ConfigureAwait(false);
+            vm.ClanWarLog = await RequestClanWarLogAsync(ClanTag).ConfigureAwait(false);
             return vm;
         }
 
